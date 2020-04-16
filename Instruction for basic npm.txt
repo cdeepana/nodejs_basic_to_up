@@ -41,7 +41,7 @@
 2) when yes entered [package.json file will be created in the folder].
 
 3) after that we can install any package using npm i [package_name] also.
-    all installed packages dependencies well be mentioned in package.json file.
+    all installed packages dependencies will be mentioned in package.json file.
 
 4) And package-lock.json is include all dependency packages details.
 
