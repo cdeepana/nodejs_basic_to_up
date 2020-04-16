@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Doc Socket</title>
+    </head>
+
+    <body>
+        
+        <h1>APP</h1>
+
+        <form action="javascript:void(0)">  <!-- this code sample stop the refresh functionality of html page when user SUBMIT "button" clicked  -->
+            <label for="message">Message</label>
+            <input type="text" id="message">
+
+            <button>Submit</button>
+            
+
+        </form>
+        <button onclick="closeServer()">Exit server</button>
+
+        <div class="messages"></div>
+        <script src="websocket-client.js"></script>    <!-- this script for client js running --> 
+    </body>
+</html>

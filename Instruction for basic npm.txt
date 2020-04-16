@@ -46,3 +46,6 @@
 4) And package-lock.json is include all dependency packages details.
 
 
+5) install body parser using npm
+
+6) npm install ws ===> this is for installing web socket through npm
