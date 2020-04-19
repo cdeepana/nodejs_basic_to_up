@@ -54,3 +54,9 @@ nodejs from js basic theories
 5) install body parser using npm
 
 6) npm install ws ===> this is for installing web socket through npm
+
+7) in mongodb sample project [ (i)  first create configure node project usinng "npm init"
+                               (ii) after that should install mongodb using "npm install mongodb 
+                                    OR npm install mongodb --save to save] this for depency saving
+                               (iii) npm install mongoose
+    *after mongodb version 3.0 the another configuration can be use [v3.* this] for mongodb connection in node app
