@@ -12,7 +12,7 @@ WS.onopen = () => {   // when server connection ok /open  , this method onopen c
     showConnectionStatus('CONNECTED TO THE SERVER !');
 }
 
-WS.onclose = () => {
+WS.onclose = () => {    // when server connection close this will execute
     console.log("CONNECTION CLOSE");
     showConnectionStatus('CONNECTION LOST !');
 }
