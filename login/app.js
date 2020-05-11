@@ -59,6 +59,10 @@ app.post('/login', (req, res)=> {
     });
 });
 
+app.get('/', (req, res)=> {
+    res.send('Hello testing ok ');
+});
+
 
 
 app.listen(4000, ()=> {
