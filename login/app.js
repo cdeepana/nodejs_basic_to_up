@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = require('./models/Users');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const jsonwebtoken = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));   // parse application/x-www-form-urlencoded
@@ -50,7 +51,12 @@ app.post('/login', (req, res)=> {
                 if(err) return err;
 
                 if(matched){
-                    res.status(200).send('USER WAS ABLE TO LOG !!');
+                    var token = jsonwebtoken.sign({ foo: 'bar' }, 'shhhhh');
+                    res.send(token);
+
+                    var decoded = jsonwebtoken.verify(token,'shhhhh');
+                    console.log(decoded);
+                    // res.status(200).send('USER WAS ABLE TO LOG !!');
                 }else{
                     res.send('NOT ABLE TO LOGIN !!');
                 }
