@@ -5,19 +5,10 @@ const User = require('./models/Users');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
-var passport = require('passport');
-var LocalStrategy  = require('passport-local').Strategy;
-var session = require('express-session');
- 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));   // parse application/x-www-form-urlencoded
 mongoose.Promise = global.Promise;
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 mongoose.connect('mongodb://localhost:27017/testLogin',{ useNewUrlParser: true,  useUnifiedTopology: true  });
 
@@ -25,47 +16,6 @@ mongoose.connection.once('open' ,()=> {
       console.log("connection was established");
 }).on('error', (error01)=> {
     console.log(`can not connect database`, error01);
-});
-
-passport.use(new LocalStrategy({
-    usernameField: 'email'
-  },
-  function(email,password, done) {
-    console.log("email ==> ", email);
-  }
-));
-
-app.use("/login", (req, res, next) => {
-    console.log();
-  next();
-});
-
-
-
-app.post('/login', (req, res)=> {   //============================================================================================LOGIN
-    User.findOne({email: req.body.email}).then(user => {
-        if(user){
-            bcrypt.compare(req.body.password, user.password, (err,matched)=> {
-                console.log("matched => ", matched);
-                if(err) return err;
-
-                if(matched){
-                    var token = jsonwebtoken.sign({ foo: 'bar' }, 'shhhhh');
-                    res.send(token);
-
-                    var decoded = jsonwebtoken.verify(token,'shhhhh');
-                    console.log(decoded);
-                    // res.status(200).send('USER WAS ABLE TO LOG !!');
-                }else{
-                    res.send('NOT ABLE TO LOGIN !!');
-                }
-            });
-        }
-    });
-});
-
-app.get('/', (req, res)=> {
-    res.send('Hello testing ok ');
 });
 
 
@@ -91,6 +41,32 @@ app.post('/register', (req,res)=> { //==========================================
             });
         });
     });
+});
+
+app.post('/login', (req, res)=> {   //============================================================================================LOGIN
+    User.findOne({email: req.body.email}).then(user => {
+        if(user){
+            bcrypt.compare(req.body.password, user.password, (err,matched)=> {
+                console.log("matched => ", matched);
+                if(err) return err;
+
+                if(matched){
+                    var token = jsonwebtoken.sign({ foo: 'bar' }, 'shhhhh');
+                    res.send(token);
+
+                    var decoded = jsonwebtoken.verify(token,'shhhhh');
+                    console.log(decoded);
+                    // res.status(200).send('USER WAS ABLE TO LOG !!');
+                }else{
+                    res.send('NOT ABLE TO LOGIN !!');
+                }
+            });
+        }
+    });
+});
+
+app.get('/', (req, res)=> {
+    res.send('Hello testing ok ');
 });
 
 
