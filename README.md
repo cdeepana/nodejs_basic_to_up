@@ -1,6 +1,10 @@
 # nodejs_basic_to_up
 nodejs from js basic theories 
 
++ Mongodb + native https request + java script socket +
+
+basic introduction and usage PassportJS
+
 
 
 1) npm init in console and do above things
